@@ -29,6 +29,7 @@
          -moz-border-radius-topleft: 3px;
             border-top-right-radius: 3px;
              border-top-left-radius: 3px;
+    max-height: 100%;
 }
 
 .lightbox-data {

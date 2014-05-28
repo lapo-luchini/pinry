@@ -46,19 +46,26 @@ $(window).load(function() {
     // Start View Functions
     function createBox(context) {
         freezeScroll();
+        var maxW = 0|(0.9 * $(window).width()),
+            w = context.image.standard.width,
+            h = context.image.standard.height;
+        if (w > maxW) {
+            h *= maxW / w;
+            w = maxW;
+        }
         $('body').append(renderTemplate('#lightbox-template', context));
         var box = $('.lightbox-background');
         box.css('height', $(document).height());
-        $('.lightbox-image-wrapper').css('height', context.image.standard.height);
+        $('.lightbox-image-wrapper').css('height', h);
         box.fadeIn(200);
         $('.lightbox-image').load(function() {
             $(this).fadeIn(200);
         });
         $('.lightbox-wrapper').css({
-            'width': context.image.standard.width,
+            'width': w,
             'margin-top': 80,
             'margin-bottom': 80,
-            'margin-left': -context.image.standard.width/2
+            'margin-left': -w/2
         });
         if ($('.lightbox-wrapper').height()+140 > $(window).height())
             $('.lightbox-background').height($('.lightbox-wrapper').height()+140);
