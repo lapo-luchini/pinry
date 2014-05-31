@@ -42,7 +42,7 @@ function main() {
         var pinryImages = document.createElement('div');
         pinryImages.id = 'pinry-images';
         $(pinryImages).css({
-            'position': 'absolute',
+            'position': 'fixed',
             'z-index': '9001',
             'background': 'rgba(0, 0, 0, 0.7)',
             'padding-top': '70px',
@@ -74,7 +74,6 @@ function main() {
             if (e.keyCode == 27) // ESC key
                 closePinry();
         });
-        $(window).scrollTop(0);
     }
 
     function imageView(imageUrl) {
