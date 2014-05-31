@@ -47,8 +47,8 @@ $(window).load(function() {
     function createBox(context) {
         freezeScroll();
         var maxW = 0|(0.9 * $(window).width()),
-            w = context.image.standard.width,
-            h = context.image.standard.height;
+            w = context.image.width,
+            h = context.image.height;
         if (w > maxW) {
             h *= maxW / w;
             w = maxW;
