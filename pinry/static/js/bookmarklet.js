@@ -43,7 +43,7 @@ function main() {
         pinryImages.id = 'pinry-images';
         $(pinryImages).css({
             'position': 'fixed',
-            'z-index': '9001',
+            'z-index': '2147483647', // http://www.puidokas.com/max-z-index/
             'background': 'rgba(0, 0, 0, 0.7)',
             'padding-top': '70px',
             'top': '0',
