@@ -81,7 +81,7 @@ function main() {
         // Requires that pageView has been created already
         var image = $('<div/>');
         image.css({
-            'background-image': 'url('+imageUrl+')',
+            'background-image': 'url('+imageUrl.replace(/([()])/g, '\\$1')+')',
             'background-position': 'center center',
             'background-repeat': 'no-repeat',
             'background-size': 'cover',
