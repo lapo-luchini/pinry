@@ -95,7 +95,7 @@ function main() {
             'border': '1px solid #555'
         });
         image.click(function() {
-            var popUrl = getFormUrl()+encodeURIComponent(imageUrl);
+            var popUrl = getFormUrl()+imageUrl;
             window.open(popUrl);
             closePinry();
         });
