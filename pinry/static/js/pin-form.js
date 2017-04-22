@@ -88,31 +88,26 @@ $(window).load(function() {
                     $('#pin-form-image-upload').parent().fadeOut(300);
             });
         }
-        // Drag and Drop Upload
-        $('#pin-form-image-upload').fineUploader({
-            request: {
-                endpoint: '/pins/create-image/',
-                paramsInBody: true,
-                multiple: false,
-                validation: {
-                    allowedExtensions: ['jpeg', 'jpg', 'png', 'gif']
-                },
-                text: {
-                    uploadButton: 'Click or Drop'
-                }
+        // Drag and drop upload
+        $('#pin-form-image-upload').dropzone({
+            url: '/pins/create-image/',
+            paramName: 'qqfile',
+            parallelUploads: 1,
+            uploadMultiple: false,
+            maxFiles: 1,
+            acceptedFiles: 'image/*',
+            success: function(file, resp) {
+                $('#pin-form-image-url').parent().fadeOut(300);
+                var promise = getImageData(resp.success.id);
+                uploadedImage = resp.success.id;
+                promise.success(function(image) {
+                    $('#pin-form-image-url').val(image.thumbnail.image);
+                    createPinPreviewFromForm();
+                });
+                promise.error(function() {
+                    message('Problem uploading image.', 'alert alert-error');
+                });
             }
-        }).on('complete', function(e, id, name, data) {
-            $('#pin-form-image-url').parent().fadeOut(300);
-            $('.qq-upload-button').css('display', 'none');
-            var promise = getImageData(data.success.id);
-            uploadedImage = data.success.id;
-            promise.success(function(image) {
-                $('#pin-form-image-url').val(image.thumbnail.image);
-                createPinPreviewFromForm();
-            });
-            promise.error(function() {
-                message('Problem uploading image.', 'alert alert-error');
-            });
         });
         // If bookmarklet submit
         if (pinFromUrl) {
@@ -155,7 +150,7 @@ $(window).load(function() {
                     editedPin = null;
                 });
                 promise.error(function() {
-                    message('Problem updating image.', 'alert alert-error');
+                    message('Problem updating image.', 'alert alert-danger');
                 });
             } else {
                 var data = {
@@ -177,7 +172,7 @@ $(window).load(function() {
                     uploadedImage = false;
                 });
                 promise.error(function() {
-                    message('Problem saving image.', 'alert alert-error');
+                    message('Problem saving image.', 'alert alert-danger');
                 });
             }
         });

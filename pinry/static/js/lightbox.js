@@ -6,7 +6,7 @@
  *          It also has a nice parallax view mode where the top scrolls and the
  *          background stays stationary.
  * Authors: Pinry Contributors
- * Updated: Feb 26th, 2013
+ * Updated: Feb 4th, 2016
  * Require: jQuery, Pinry JavaScript Helpers
  */
 
@@ -68,7 +68,7 @@ $(window).load(function() {
             'margin-left': -w/2
         });
         if ($('.lightbox-wrapper').height()+140 > $(window).height())
-            $('.lightbox-background').height($('.lightbox-wrapper').height()+140);
+            $('.lightbox-background').height($('.lightbox-wrapper').height()+160);
 
         box.click(function() {
             $(this).fadeOut(200);
@@ -90,7 +90,7 @@ $(window).load(function() {
                 createBox(pin);
             });
             promise.error(function() {
-                message('Problem problem fetching pin data.', 'alert alert-error');
+                message('Problem problem fetching pin data.', 'alert alert-danger');
             });
         }
         return links.each(function() {
@@ -102,7 +102,7 @@ $(window).load(function() {
                     createBox(pin);
                 });
                 promise.error(function() {
-                    message('Problem problem fetching pin data.', 'alert alert-error');
+                    message('Problem problem fetching pin data.', 'alert alert-danger');
                 });
             });
         });

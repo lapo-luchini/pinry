@@ -11,6 +11,7 @@
 /*.egg-info/
 /pip-log.txt
 /venv/
+/.venv/
 
 # Buildout
 /eggs/
@@ -18,11 +19,15 @@
 /.installed.cfg
 /*.egg
 
+# Bower
+/pinry/static/vendor/
+
 # sphinx
 /docs/_build/
 
 # Project
 /*.db
+/*.sqlite3
 
 # Misc
 /.idea/

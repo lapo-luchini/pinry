@@ -1,37 +1,16 @@
 <!DOCTYPE html>
-{% load static from staticfiles %}
-{% load compress %}
+{% load staticfiles compress %}
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-        {%  if request.resolver_match.kwargs.user %}
-            <link rel="alternate" type="application/rss+xml" href="/feeds/latest-pins/user/{{ request.resolver_match.kwargs.user }}/">
-        {% elif request.resolver_match.kwargs.tag %}
-            <link rel="alternate" type="application/rss+xml" href="/feeds/latest-pins/tag/{{ request.resolver_match.kwargs.tag }}/">
-        {% else %}
-            <link rel="alternate" type="application/rss+xml" href="/feeds/latest-pins/">
-        {% endif %}
-
-        <!--  ___                     ___           ___                 
-             /  /\      ___          /__/\         /  /\          ___   
-            /  /::\    /  /\         \  \:\       /  /::\        /__/|  
-           /  /:/\:\  /  /:/          \  \:\     /  /:/\:\      |  |:|  
-          /  /:/~/:/ /__/::\      _____\__\:\   /  /:/~/:/      |  |:|  
-         /__/:/ /:/  \__\/\:\__  /__/::::::::\ /__/:/ /:/___  __|__|:|  
-         \  \:\/:/      \  \:\/\ \  \:\~~\~~\/ \  \:\/:::::/ /__/::::\  
-          \  \::/        \__\::/  \  \:\  ~~~   \  \::/~~~~     ~\~~\:\ 
-           \  \:\        /__/:/    \  \:\        \  \:\           \  \:\
-            \  \:\       \__\/      \  \:\        \  \:\           \__\/
-             \__\/                   \__\/         \__\/             -->
-
         <title>{% block title %}Pinry{% endblock %}</title>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,700"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700"/>
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.6/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://unpkg.com/dropzone@4.3.0/dist/min/dropzone.min.css"/>
         {% compress css %}
-            <link rel="stylesheet" href="{% static "vendor/bootstrap/3.0.0/css/bootstrap.css" %}"/>
-            <link rel="stylesheet" href="{% static "vendor/fineuploader/3.1.1/fineuploader.css" %}"/>
             <link rel="stylesheet" href="{% static "css/messages.css" %}"/>
             <link rel="stylesheet" href="{% static "css/lightbox.css" %}"/>
             <link rel="stylesheet" href="{% static "css/pinry.css" %}"/>
@@ -120,11 +99,11 @@
         <!-- End Templates -->
 
         <!-- JavaScript -->
+        <script src="https://unpkg.com/jquery@2.2.4/dist/jquery.min.js"></script>
+        <script src="https://unpkg.com/bootstrap@3.3.6/dist/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/handlebars@4.0.6/dist/handlebars.min.js"></script>
+        <script src="https://unpkg.com/dropzone@4.3.0/dist/min/dropzone.min.js"></script>
         {% compress js %}
-            <script src="{% static "vendor/jquery/2.0.3/jquery-2.0.3.js" %}"></script>
-            <script src="{% static "vendor/fineuploader/3.1.1/jquery.fineuploader.js" %}"></script>
-            <script src="{% static "vendor/bootstrap/3.0.0/js/bootstrap.js" %}"></script>
-            <script src="{% static "vendor/handlebars/1.0.0/handlebars.js" %}"></script>
             <script src="{% static "js/helpers.js" %}"></script>
             <script src="{% static "js/messages.js" %}"></script>
             <script src="{% static "js/lightbox.js" %}"></script>
