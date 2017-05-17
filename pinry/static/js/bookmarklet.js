@@ -69,10 +69,30 @@
         pinryBar.textContent = 'Pinry Bookmarklet';
         pinryBar.onclick = closePinry;
         pinryImages.appendChild(pinryBar);
+        var pinrySort = document.createElement('div');
+        setCSS(pinrySort, {
+            display: 'block',
+            position: 'absolute',
+            top: '15px',
+            right: '1em',
+            cursor: 'pointer'
+        });
+        pinrySort.textContent = '\u21D5 Size';
+        pinryBar.appendChild(pinrySort);
         document.body.appendChild(pinryImages);
         document.onkeyup = function (e) {
             if (e.keyCode == 27) // ESC key
                 closePinry();
+        };
+        pinrySort.onclick = function (e) {
+            e.stopPropagation();
+            Array.prototype.slice.call(pinryImages.children).sort(function (a, b) {
+                var d = b.getAttribute('pinryArea') - a.getAttribute('pinryArea');
+                if (d != 0) return d;
+                return a.getAttribute('pinryOrder') - b.getAttribute('pinryOrder');
+            }).forEach(function (div) {
+                pinryImages.appendChild(div);
+            });
         };
     }
 
@@ -106,6 +126,7 @@
 
     // Start Active Functions
     var images = {}, // cache URLs to avoid duplicates
+        imageOrder = 0,
         reURL = /url[(]"([^"]+)"[)]/; // match an URL in CSS
     function addImage(img) {
         if (images[img.src])
@@ -113,8 +134,12 @@
         images[img.src] = true;
         var w = img.naturalWidth,
             h = img.naturalHeight;
-        if (w > 200 && h > 200)
-            imageView(img.src).textContent = w + '\u00D7' + h;
+        if (w > 200 && h > 200) {
+            var i = imageView(img.src);
+            i.textContent = w + '\u00D7' + h;
+            i.setAttribute('pinryOrder', ++imageOrder);
+            i.setAttribute('pinryArea', w * h);
+        }
     }
     function addAllImagesToPageView() {
         // add all explicit IMGs
