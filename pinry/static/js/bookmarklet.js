@@ -39,6 +39,7 @@
         pinryImages.id = 'pinry-images';
         setCSS(pinryImages, {
             position: 'fixed',
+            display: 'block',
             zIndex: 2147483647, // http://www.puidokas.com/max-z-index/
             background: 'rgba(0, 0, 0, 0.7)',
             paddingTop: '70px',
@@ -53,6 +54,7 @@
         var pinryBar = document.createElement('div');
         pinryBar.id = 'pinry-bar';
         setCSS(pinryBar, {
+            display: 'block',
             background: 'black',
             padding: '15px',
             position: 'absolute',
