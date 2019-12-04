@@ -87,10 +87,9 @@
         pinrySort.onclick = function (e) {
             e.stopPropagation();
             Array.prototype.slice.call(pinryImages.children).sort(function (a, b) {
-                var d = b.getAttribute('pinryArea') - a.getAttribute('pinryArea');
-                if (d != 0) return d;
-                return a.getAttribute('pinryOrder') - b.getAttribute('pinryOrder');
+                return b.getAttribute('pinryArea') - a.getAttribute('pinryArea');
             }).forEach(function (div) {
+                // re-add to parent in sorted order
                 pinryImages.appendChild(div);
             });
         };
@@ -126,7 +125,6 @@
 
     // Start Active Functions
     var images = {}, // cache URLs to avoid duplicates
-        imageOrder = 0,
         reURL = /url[(]"([^"]+)"[)]/; // match an URL in CSS
     function addImage(img) {
         if (images[img.src])
@@ -137,7 +135,6 @@
         if (w > 200 && h > 200) {
             var i = imageView(img.src);
             i.textContent = w + '\u00D7' + h;
-            i.setAttribute('pinryOrder', ++imageOrder);
             i.setAttribute('pinryArea', w * h);
         }
     }
