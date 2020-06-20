@@ -169,7 +169,7 @@ export default {
       this.pinModel.form.tags.value = this.existedPin.tags;
       this.pinModel.form.private.value = this.existedPin.private;
     } else {
-      this.pinModel.form.private.value = false;
+      this.pinModel.form.private.value = true;
     }
     if (this.fromUrl) {
       this.pinModel.form.url.value = this.fromUrl.url;
