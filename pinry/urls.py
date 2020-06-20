@@ -27,6 +27,8 @@ if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += [
         url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, }),
+        url(r'^$', serve, {'document_root': 'pinry-spa/dist/', 'path': 'index.html'}),
+        url(r'^(?P<path>.*)$', serve, {'document_root': 'pinry-spa/dist/', }),
     ]
 
 if settings.IS_TEST:

@@ -3,8 +3,8 @@ url = "https://pypi.python.org/simple"
 name = "pypi"
 verify_ssl = true
 
-[requires]
-python_version = "3.6"
+#[requires]
+#python_version = "3.6"
 
 [dev-packages]
 "flake8" = "*"
@@ -25,6 +25,6 @@ mock = "*"
 gunicorn = "*"
 djangorestframework = "*"
 markdown = "<3.2"
-django-filter = "*"
+django-filter = "==2.2.0"
 coreapi = "*"
-psycopg2-binary = "*"
+#psycopg2-binary = "*"
